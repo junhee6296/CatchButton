@@ -12,23 +12,37 @@ namespace CatchButton
         private int score = 0;           // 현재 점수
         private double escapeChance = 0.2; // 도망 확률 설정
         private int missCount = 0;       // 놓친 횟수
+        
+        //소리 객체화
+        private SoundPlayer runSound = new SoundPlayer(@"C:\Windows\Media\Windows Notify Messaging.wav");
+        private SoundPlayer clearSound = new SoundPlayer(@"C:\Windows\Media\chimes.wav");
 
         public Form1()
         {
             InitializeComponent();
+            try
+            {
+                runSound.Load();
+                clearSound.Load();
+            }
+            catch { /* 파일이 없을 경우 에러 방지 */ }
         }
 
         private void Running_button_MouseEnter(object sender, EventArgs e)
         {
-            //오클릭 20번 이상 = 게임오버
+            // 확률 체크 (1순위로)
+            if (random_position.NextDouble() > escapeChance) return;
+
+            // 점수 계산 (도망쳐서 감점되는 부분) 2순위로
+            score -= 10;
+            missCount++;
+
+            //오클릭 20번 이상 = 게임오버 3순위로
             if (missCount >= 20)
             {
                 GameOver();
                 return;
             }
-
-            // 도망 확률 계산
-            if (random_position.NextDouble() > escapeChance) return;
 
             //일단 먼저 버튼이 폼 안에서만 움직이도록 최대값을 구해보기
             int maxX = Math.Max(0, ClientSize.Width - Running_button.Width);
@@ -42,16 +56,11 @@ namespace CatchButton
             // 버튼을 새로운 랜덤 위치로 이동하기
             Running_button.Location = new Point(nextX, nextY);
 
-            // 점수 계산 (도망쳐서 감점되는 부분)
-            score -= 10;
-            missCount++;
-
             // 도망 소리
-            SoundPlayer run = new SoundPlayer(@"C:\Windows\Media\Windows Notify Messaging.wav");
-            run.Play();
+            runSound.Play();
 
             //폼 제목 버튼 위치로 정의하기
-            Text = $"점수: {score} | 버튼 위치: ({nextX}, {nextY})";
+            Text = $"점수: {score} | 놓친 횟수: {missCount}/20 | 위치: ({nextX}, {nextY})";
         }
 
         private void Running_button_Click(object sender, EventArgs e)
@@ -72,16 +81,11 @@ namespace CatchButton
             Running_button.Font = new Font(Running_button.Font.FontFamily, newFontSize);
 
             // 클리어 효과음
-            SoundPlayer clear = new SoundPlayer(@"C:\Windows\Media\chimes.wav");
-            clear.Play();
+            clearSound.Play();
 
             // 성공 메시지 박스 및 제목 수정
             Text = $"점수: {score} | 성공! 난이도 상승!";
             MessageBox.Show($"축하합니다~! (현재 점수: {score})");
-
-        }
-        private void Resetbutton(object sender, EventArgs e)
-        {
 
         }
 
