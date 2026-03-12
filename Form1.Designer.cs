@@ -34,11 +34,11 @@
             // Running_button
             // 
             Running_button.BackColor = SystemColors.ActiveCaption;
-            Running_button.Font = new Font("서울남산 장체 M", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            Running_button.Font = new Font("서울남산 장체 M", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 129);
             Running_button.ForeColor = Color.LightYellow;
-            Running_button.Location = new Point(284, 186);
+            Running_button.Location = new Point(190, 165);
             Running_button.Name = "Running_button";
-            Running_button.Size = new Size(197, 60);
+            Running_button.Size = new Size(384, 120);
             Running_button.TabIndex = 0;
             Running_button.Text = "나를 잡아봐";
             Running_button.UseVisualStyleBackColor = false;

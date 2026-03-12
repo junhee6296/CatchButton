@@ -20,6 +20,9 @@ namespace CatchButton
 
         private void Running_button_MouseEnter(object sender, EventArgs e)
         {
+            // 도망 확률 계산
+            if (random_position.NextDouble() > escapeChance) return;
+
             //일단 먼저 버튼이 폼 안에서만 움직이도록 최대값을 구해보기
             int maxX = Math.Max(0, ClientSize.Width - Running_button.Width);
             int maxY = Math.Max(0, ClientSize.Height - Running_button.Height);
@@ -35,9 +38,6 @@ namespace CatchButton
             // 점수 계산 (도망쳐서 감점되는 부분)
             score -= 10;
             missCount++;
-            
-            // 도망 확률 계산
-            if (random_position.NextDouble() > escapeChance) return;
 
             // 도망 소리
             SoundPlayer run = new SoundPlayer(@"C:\Windows\Media\Windows Notify Messaging.wav");
