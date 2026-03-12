@@ -20,6 +20,13 @@ namespace CatchButton
 
         private void Running_button_MouseEnter(object sender, EventArgs e)
         {
+            //오클릭 20번 이상 = 게임오버
+            if (missCount >= 20)
+            {
+                GameOver();
+                return;
+            }
+
             // 도망 확률 계산
             if (random_position.NextDouble() > escapeChance) return;
 
@@ -72,6 +79,39 @@ namespace CatchButton
             Text = $"점수: {score} | 성공! 난이도 상승!";
             MessageBox.Show($"축하합니다~! (현재 점수: {score})");
 
+        }
+        private void Resetbutton(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GameOver()
+        {
+            Running_button.Enabled = false; // 도망가는 버튼 비활성화
+
+            // 리셋 버튼을 화면에 다시 나타나게 함
+            Reset_button.Visible = true;
+
+            MessageBox.Show($"Game Over\n 20번 놓쳐서 게임오버 되셨습니다. \n재도전하시려면 '재도전'버튼을 누르세요! \n 최종 점수는 {score} 점입니다. ");
+        }
+
+        private void Resetbutton_Click(object sender, EventArgs e)
+        {
+            // 게임 초기화
+            score = 0;
+            missCount = 0;
+            escapeChance = 0.2;
+
+            //버튼 크기 및 폰트 복구
+            Running_button.Size = new Size(197, 60);
+            float defaultFontSize = 14.0f; // 초기 폰트 크기
+            Running_button.Font = new Font(Running_button.Font.FontFamily, defaultFontSize);
+
+            //재도전 제목
+            Text = "다시 시작! 버튼을 잡아보세요.";
+
+            //재도전 버튼 비활성화
+            Reset_button.Visible = false;
         }
     }
 }
