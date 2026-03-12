@@ -1,3 +1,5 @@
+using System.Media;
+
 namespace CatchButton
 {
     public partial class Form1 : Form
@@ -9,11 +11,6 @@ namespace CatchButton
         public Form1()
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void Running_button_MouseEnter(object sender, EventArgs e)
@@ -30,8 +27,22 @@ namespace CatchButton
             // 버튼을 새로운 랜덤 위치로 이동하기
             Running_button.Location = new Point(nextX, nextY);
 
+            // 도망 소리
+            SoundPlayer run = new SoundPlayer(@"C:\Windows\Media\Windows Notify Messaging.wav");
+            run.Play();
+
             //폼 제목 버튼 위치로 정의하기
             Text = $"버튼 위치: ({nextX}, {nextY})";
+        }
+
+        private void Running_button_Click(object sender, EventArgs e)
+        {
+            // 클리어 효과음
+            SoundPlayer clear = new SoundPlayer(@"C:\Windows\Media\chimes.wav");
+            clear.Play();
+
+            // 메시지 박스 띄우기 
+            MessageBox.Show("축하합니다~!");
         }
     }
 }
