@@ -13,4 +13,4 @@
 - 4단계 코드
 
 ## 구현 시 어려웠던 점
-1. 버튼이 창 밖으로 조금이라도 나가지 않기 위해 (ClientSize.Width - Running_button.Width, 또는 Height) 부분을 찾아내야 하는 부분이 첫 도전이었음
+1. 버튼이 창 밖으로 조금이라도 나가지 않기 위해 (ClientSize.Width - Running_button.Width, 또는 Height) 과 같이 작성해야 한다는 점을 찾아내야 하는 부분이 첫 도전이었음
