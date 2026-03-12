@@ -10,7 +10,7 @@
 
 - 2단계 코드
 
-https://github.com/user-attachments/assets/18e5483f-a853-4fbd-a6aa-3d3aba0181f5
+https://github.com/user-attachments/assets/f7f12173-add9-46cf-9406-0dbabee24809
 
 도망 소리, 클리어소리 및 팝업 추가
 
