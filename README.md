@@ -15,9 +15,15 @@ https://github.com/user-attachments/assets/f7f12173-add9-46cf-9406-0dbabee24809
 도망 소리, 클리어소리 및 팝업 추가
 
 - 3단계 코드
+
+https://github.com/user-attachments/assets/8b5e31cf-4677-4159-8935-b3962e93120a
+
+버튼 크기 축소 및 점수 시스템 구현
+
 - 4단계 코드
 
 ## 구현 시 어려웠던 점
 1. 버튼이 창 밖으로 조금이라도 나가지 않기 위해 (ClientSize.Width - Running_button.Width, 또는 Height) 과 같이 작성해야 한다는 점을 찾아내야 하는 부분이 첫 도전이었음
 2. SoundPlayer 소스 구현하면서 모든 사용자의 PC에서 소리가 오류없이 나도록 Path를 설정하는 과정에서 약간의 어려움이 있었음 (기본 Windows 시스템 사운드 활용)
 3. 코드 우선순위를 잘못 설정하여 버튼이 무조건 도망가는 문제가 있었음
+4. 글자는 그대로 크기가 적용되어 글자가 1글자씩 사라지는 문제가 있어서 폰트도 10%씩 감소되게 하여서 해결함
