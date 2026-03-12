@@ -59,6 +59,11 @@ namespace CatchButton
             Running_button.Width = (int)(Running_button.Width * 0.9);
             Running_button.Height = (int)(Running_button.Height * 0.9);
 
+            //폰트 크기도 작아지게 해서 글자 잘림 방지
+            float newFontSize = Running_button.Font.Size * 0.9f;
+            if (newFontSize < 2.0f) newFontSize = 2.0f;
+            Running_button.Font = new Font(Running_button.Font.FontFamily, newFontSize);
+
             // 클리어 효과음
             SoundPlayer clear = new SoundPlayer(@"C:\Windows\Media\chimes.wav");
             clear.Play();
