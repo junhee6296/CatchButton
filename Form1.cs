@@ -88,6 +88,7 @@ namespace CatchButton
         private void GameOver()
         {
             Running_button.Enabled = false; // 도망가는 버튼 비활성화
+            Running_button.Visible = false; // 비주얼적 수정으로 인한 비활성화
 
             // 리셋 버튼을 화면에 다시 나타나게 함
             Reset_button.Visible = true;
@@ -97,15 +98,24 @@ namespace CatchButton
 
         private void Resetbutton_Click(object sender, EventArgs e)
         {
+            //버튼 재활성화
+            Running_button.Enabled = true;
+            Running_button.Visible = true;
+
             // 게임 초기화
             score = 0;
             missCount = 0;
             escapeChance = 0.2;
 
             //버튼 크기 및 폰트 복구
-            Running_button.Size = new Size(197, 60);
-            float defaultFontSize = 14.0f; // 초기 폰트 크기
-            Running_button.Font = new Font(Running_button.Font.FontFamily, defaultFontSize);
+            Running_button.Size = new Size(384, 120);
+            float defaultFontSize = 26.25f;
+            Running_button.Font = new Font("서울남산 장체 M", defaultFontSize);
+
+            //"현재 창 크기 기준" 가운데로 첫 버튼이 발현되도록 함
+            int centerX = (ClientSize.Width - Running_button.Width) / 2;
+            int centerY = (ClientSize.Height - Running_button.Height) / 2;
+            Running_button.Location = new Point(centerX, centerY);
 
             //재도전 제목
             Text = "다시 시작! 버튼을 잡아보세요.";
